@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "./ui/button";
-import { account } from "@/lib/appwrite";
+import { account } from "@/lib/appwrite-server";
 import { OAuthProvider } from "appwrite";
 
 export default function SignInWithApple() {
