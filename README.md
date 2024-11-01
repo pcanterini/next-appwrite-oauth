@@ -1,4 +1,4 @@
-# Appwrite Nextjs OAuth demo (Sign in with Apple and Google)
+# Nextjs + Appwrite + Sign in with Apple or Google
 
 ![Alt Text](public/apple-sign-in.gif)
 
