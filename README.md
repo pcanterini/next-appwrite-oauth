@@ -4,7 +4,7 @@
 
 ## Getting Started
 
-Before using OAuth 2 login, you need to [https://stage.appwrite.io/docs/products/auth/oauth2](enable and configure an OAuth 2 login provider).
+Before using OAuth 2 login, you need to [enable and configure an OAuth 2 login provider](https://stage.appwrite.io/docs/products/auth/oauth2).
 
 1. Navigate to your Appwrite project.
 1. Navigate to Auth > Settings.
@@ -35,4 +35,3 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
