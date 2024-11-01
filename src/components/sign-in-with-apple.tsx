@@ -9,8 +9,8 @@ export default function SignInWithApple() {
       // Create OAuth2 authentication session
       await account.createOAuth2Session(
         OAuthProvider.Apple,
-        "http://localhost:3000#success", // Success URL
-        "http://localhost:3000#failure" // Failure URL
+        process.env.NEXT_PUBLIC_OAUTH_REDIRECT_URL, // Success URL
+        process.env.NEXT_PUBLIC_OAUTH_REDIRECT_URL // Failure URL
       );
     } catch (error) {
       console.error("OAuth login error:", error);
