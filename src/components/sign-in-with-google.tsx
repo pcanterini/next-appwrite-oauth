@@ -1,8 +1,24 @@
+"use client";
 import { Button } from "./ui/button";
+import { account } from "@/lib/appwrite";
+import { OAuthProvider } from "appwrite";
 
 export default function SignInWithGoogle() {
+  const signin = async () => {
+    try {
+      // Create OAuth2 authentication session
+      await account.createOAuth2Session(
+        OAuthProvider.Google,
+        "http://localhost:3000#success", // Success URL
+        "http://localhost:3000#failure" // Failure URL
+      );
+    } catch (error) {
+      console.error("OAuth login error:", error);
+    }
+  };
+
   return (
-    <Button variant="outline" className="min-w-64">
+    <Button variant="outline" className="min-w-64" onClick={signin}>
       <svg
         className="mr-2 h-5 w-5"
         xmlns="http://www.w3.org/2000/svg"
