@@ -15,9 +15,15 @@ Before using OAuth 2 login, you need to [enable and configure an OAuth 2 login p
 1. Configure redirect URL in your OAuth 2 provider's developer platform. Set it to URL provided to you by OAuth2 Settings modal in Appwrite Console.
 1. You will need to set up your
 
-## Environment variables
+## App changes
 
-Copy and make sure to set your public env vars:
+### Install deps
+
+```bash
+npm install
+```
+
+### Copy set your public env vars
 
 ```bash
 cp .env.example .env.local
@@ -28,6 +34,8 @@ cp .env.example .env.local
 NEXT_PUBLIC_APPWRITE_ENDPOINT=
 NEXT_PUBLIC_APPWRITE_PROJECT_ID=
 ```
+
+### Start the app
 
 ```bash
 # start app
