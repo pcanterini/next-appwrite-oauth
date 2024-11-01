@@ -2,6 +2,10 @@
 
 ![Alt Text](public/apple-sign-in.gif)
 
+## Demo
+
+[https://next-appwrite-oauth.hip.dev](https://next-appwrite-oauth.hip.dev)
+
 ## Getting Started
 
 Before using OAuth 2 login, you need to [enable and configure an OAuth 2 login provider](https://stage.appwrite.io/docs/products/auth/oauth2).
@@ -33,6 +37,7 @@ cp .env.example .env.local
 # .env.local
 NEXT_PUBLIC_APPWRITE_ENDPOINT=
 NEXT_PUBLIC_APPWRITE_PROJECT_ID=
+NEXT_PUBLIC_OAUTH_REDIRECT_URL=
 ```
 
 ### Start the app
