@@ -28,8 +28,8 @@ export async function signInWithOauth(provider: "google" | "apple") {
   const { account } = await createAdminClient();
   const reqHeaders = await headers();
   const origin = reqHeaders.get("origin");
-  const successUrl = `${origin}/oauth/verify`;
-  const failureUrl = `${origin}/failed-auth`;
+  const successUrl = `${origin}/oauth`;
+  const failureUrl = `${origin}/signin`;
 
   const providers = {
     google: OAuthProvider.Google,
