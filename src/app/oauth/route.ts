@@ -30,6 +30,6 @@ export async function GET(request: NextRequest) {
 
   console.log("redirecting >>", request.nextUrl);
 
-  return NextResponse.redirect(`${request.nextUrl.origin}/`);
+  return NextResponse.redirect("/");
   // return NextResponse.redirect("https://next-appwrite-oauth.hip.dev/");
 }
