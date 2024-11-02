@@ -26,10 +26,10 @@ export async function createSessionClient() {
 
 export async function signInWithOauth(provider: "google" | "apple") {
   const { account } = await createAdminClient();
-  const reqCookies = await headers();
-  const origin = reqCookies.get("origin");
+  const reqHeaders = await headers();
+  const origin = reqHeaders.get("origin");
   const successUrl = `${origin}/oauth`;
-  const failureUrl = `${origin}/signin`;
+  const failureUrl = `${origin}/failed-auth`;
 
   const providers = {
     google: OAuthProvider.Google,
@@ -72,6 +72,7 @@ export async function getLoggedInUser() {
   try {
     const { account } = await createSessionClient();
     return await account.get();
+    console.log("account >>>", account);
   } catch (error: unknown) {
     console.log((error as Error).message);
     return null;
