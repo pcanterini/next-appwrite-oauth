@@ -1,13 +1,13 @@
 "use client";
 import { Button } from "./ui/button";
-import { signInWithGoogle } from "@/lib/appwrite-server";
+import { signInWithOauth } from "@/lib/appwrite-server";
 
 export default function SignInWithGoogle() {
   return (
     <Button
       variant="outline"
       className="w-full h-14 text-lg text-white bg-zinc-800/20 border-zinc-700 hover:bg-zinc-900 hover:text-white"
-      onClick={signInWithGoogle}
+      onClick={() => signInWithOauth("google")}
     >
       <svg
         className="mr-2 h-5 w-5"

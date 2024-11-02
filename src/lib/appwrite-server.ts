@@ -24,33 +24,20 @@ export async function createSessionClient() {
   };
 }
 
-export async function signInWithGoogle() {
+export async function signInWithOauth(provider: "google" | "apple") {
   const { account } = await createAdminClient();
-
   const reqCookies = await headers();
   const origin = reqCookies.get("origin");
   const successUrl = `${origin}/oauth`;
   const failureUrl = `${origin}/signin`;
 
-  const redirectUrl = await account.createOAuth2Token(
-    OAuthProvider.Google,
-    successUrl,
-    failureUrl
-  );
-
-  redirect(redirectUrl);
-}
-
-export async function signInWithApple() {
-  const { account } = await createAdminClient();
-
-  const reqCookies = await headers();
-  const origin = reqCookies.get("origin");
-  const successUrl = `${origin}/oauth`;
-  const failureUrl = `${origin}/signin`;
+  const providers = {
+    google: OAuthProvider.Google,
+    apple: OAuthProvider.Apple,
+  };
 
   const redirectUrl = await account.createOAuth2Token(
-    OAuthProvider.Apple,
+    providers[provider],
     successUrl,
     failureUrl
   );
