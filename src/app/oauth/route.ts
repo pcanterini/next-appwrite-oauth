@@ -32,5 +32,6 @@ export async function GET(request: NextRequest) {
     maxAge: 60 * 60 * 24 * 7, // 1 week
   });
 
-  return NextResponse.redirect(`${request.nextUrl.origin}/`);
+  // return NextResponse.redirect(`${request.nextUrl.origin}/`);
+  return NextResponse.redirect("https://next-appwrite-oauth.hip.dev/");
 }
