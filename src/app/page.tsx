@@ -1,7 +1,7 @@
 import { LoadingSpinner } from "@/components/spinner";
 import { Button } from "@/components/ui/button";
 import { getLoggedInUser, signOut } from "@/lib/appwrite-server";
-import { redirect } from "next/navigation";
+// import { redirect } from "next/navigation";
 
 export default async function Home() {
   const user = await getLoggedInUser();
