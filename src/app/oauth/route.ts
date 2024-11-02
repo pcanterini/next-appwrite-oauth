@@ -4,9 +4,6 @@ import { SESSION_COOKIE } from "@/lib/const";
 import { createAdminClient } from "@/lib/appwrite-server";
 
 export async function GET(request: NextRequest) {
-  const isDevelopment = process.env.NODE_ENV === "development";
-  const isSecureContext =
-    process.env.NEXT_PUBLIC_SITE_URL?.startsWith("https") ?? !isDevelopment;
   const userId = request.nextUrl.searchParams.get("userId");
   const secret = request.nextUrl.searchParams.get("secret");
 
@@ -25,13 +22,13 @@ export async function GET(request: NextRequest) {
 
   const reqCookies = await cookies();
   reqCookies.set(SESSION_COOKIE, session.secret, {
+    secure: process.env.NODE_ENV === "production",
+    maxAge: 60 * 60 * 24 * 7, // One week
     path: "/",
-    httpOnly: true,
-    sameSite: isSecureContext ? "strict" : "lax",
-    secure: isSecureContext,
-    maxAge: 60 * 60 * 24 * 7, // 1 week
+    sameSite: "lax" as const,
   });
 
-  // return NextResponse.redirect(`${request.nextUrl.origin}/`);
-  return NextResponse.redirect("https://next-appwrite-oauth.hip.dev/");
+  return NextResponse.redirect(
+    process.env.NEXT_PUBLIC_OAUTH_REDIRECT_URL || "http://localhost:3000"
+  );
 }
