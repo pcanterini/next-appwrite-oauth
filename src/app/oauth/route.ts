@@ -28,10 +28,8 @@ export async function GET(request: NextRequest) {
     secure: true,
   });
 
-  const url = request.nextUrl.clone();
-  url.pathname = "/";
-  console.log("redirecting >>", url, request.nextUrl);
-
-  return NextResponse.redirect(url);
+  return NextResponse.redirect(
+    process.env.NEXT_PUBLIC_OAUTH_REDIRECT_URL || ""
+  );
   // return NextResponse.redirect("https://next-appwrite-oauth.hip.dev/");
 }
