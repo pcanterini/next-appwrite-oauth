@@ -4,9 +4,6 @@ import { SESSION_COOKIE } from "@/lib/const";
 import { createAdminClient } from "@/lib/appwrite-server";
 
 export async function GET(request: NextRequest) {
-  const isDevelopment = process.env.NODE_ENV === "development";
-  const isSecureContext =
-    process.env.NEXT_PUBLIC_SITE_URL?.startsWith("https") ?? !isDevelopment;
   const userId = request.nextUrl.searchParams.get("userId");
   const secret = request.nextUrl.searchParams.get("secret");
 
@@ -27,9 +24,8 @@ export async function GET(request: NextRequest) {
   reqCookies.set(SESSION_COOKIE, session.secret, {
     path: "/",
     httpOnly: true,
-    sameSite: "lax",
-    secure: isSecureContext,
-    maxAge: 60 * 60 * 24 * 7, // 1 week
+    sameSite: "strict",
+    secure: true,
   });
 
   // return NextResponse.redirect(`${request.nextUrl.origin}/`);
