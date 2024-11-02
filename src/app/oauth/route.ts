@@ -28,6 +28,8 @@ export async function GET(request: NextRequest) {
     secure: true,
   });
 
-  // return NextResponse.redirect(`${request.nextUrl.origin}/`);
-  return NextResponse.redirect("https://next-appwrite-oauth.hip.dev/");
+  console.log("redirecting >>", request.nextUrl);
+
+  return NextResponse.redirect(`${request.nextUrl.origin}/`);
+  // return NextResponse.redirect("https://next-appwrite-oauth.hip.dev/");
 }
