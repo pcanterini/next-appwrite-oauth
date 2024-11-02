@@ -70,6 +70,9 @@ export async function createAdminClient() {
 
 export async function getLoggedInUser() {
   try {
+    const cookieStore = await cookies();
+    cookieStore.get(SESSION_COOKIE);
+    console.log("cookieStore >>>", cookieStore);
     const { account } = await createSessionClient();
     return await account.get();
     console.log("account >>>", account);

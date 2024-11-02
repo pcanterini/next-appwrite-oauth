@@ -20,8 +20,8 @@ export async function GET(request: NextRequest) {
     });
   }
 
-  const reqCookies = await cookies();
-  reqCookies.set(SESSION_COOKIE, session.secret, {
+  const cookieStore = await cookies();
+  cookieStore.set(SESSION_COOKIE, session.secret, {
     secure: process.env.NODE_ENV === "production",
     maxAge: 60 * 60 * 24 * 7, // One week
     path: "/",
@@ -31,6 +31,8 @@ export async function GET(request: NextRequest) {
       domain: "next-appwrite-oauth.hip.dev",
     }),
   });
+
+  console.log("cookieStore >>>", cookieStore.get(SESSION_COOKIE));
 
   return NextResponse.json({
     authenticated: true,
