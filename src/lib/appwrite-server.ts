@@ -85,7 +85,8 @@ export async function getLoggedInUser() {
   try {
     const { account } = await createSessionClient();
     return await account.get();
-  } catch (error) {
+  } catch (error: unknown) {
+    console.log((error as Error).message);
     return null;
   }
 }
