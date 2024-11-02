@@ -22,14 +22,17 @@ export async function GET(request: NextRequest) {
 
   const reqCookies = await cookies();
   reqCookies.set(SESSION_COOKIE, session.secret, {
+    secure: process.env.NODE_ENV === "production",
+    maxAge: 60 * 60 * 24 * 7, // One week
     path: "/",
-    httpOnly: true,
-    sameSite: "strict",
-    secure: true,
+    sameSite: "lax" as const,
+    // Set domain in production
+    ...(process.env.NODE_ENV === "production" && {
+      domain: "next-appwrite-oauth.hip.dev",
+    }),
   });
 
   return NextResponse.redirect(
-    process.env.NEXT_PUBLIC_OAUTH_REDIRECT_URL || ""
+    process.env.NEXT_PUBLIC_OAUTH_REDIRECT_URL || "http://localhost:3000"
   );
-  // return NextResponse.redirect("https://next-appwrite-oauth.hip.dev/");
 }
