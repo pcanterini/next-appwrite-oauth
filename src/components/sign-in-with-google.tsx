@@ -1,24 +1,14 @@
 "use client";
 import { Button } from "./ui/button";
-import { account } from "@/lib/appwrite-server";
-import { OAuthProvider } from "appwrite";
+import { signInWithGoogle } from "@/lib/appwrite-server";
 
 export default function SignInWithGoogle() {
-  const signin = async () => {
-    try {
-      // Create OAuth2 authentication session
-      await account.createOAuth2Session(
-        OAuthProvider.Google,
-        process.env.NEXT_PUBLIC_OAUTH_REDIRECT_URL, // Success URL
-        process.env.NEXT_PUBLIC_OAUTH_REDIRECT_URL // Failure URL
-      );
-    } catch (error) {
-      console.error("OAuth login error:", error);
-    }
-  };
-
   return (
-    <Button variant="outline" className="min-w-64" onClick={signin}>
+    <Button
+      variant="outline"
+      className="w-full h-14 text-lg text-white bg-zinc-800/20 border-zinc-700 hover:bg-zinc-900 hover:text-white"
+      onClick={signInWithGoogle}
+    >
       <svg
         className="mr-2 h-5 w-5"
         xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +32,7 @@ export default function SignInWithGoogle() {
         />
         <path d="M1 1h22v22H1z" fill="none" />
       </svg>
-      Sign in with Google
+      Continue with Google
     </Button>
   );
 }

@@ -2,8 +2,7 @@
 import { Client, Account, OAuthProvider } from "node-appwrite";
 import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
-
-const SESSION_COOKIE = "app_session";
+import { SESSION_COOKIE } from "./const";
 
 export async function createSessionClient() {
   const client = new Client()
@@ -25,7 +24,24 @@ export async function createSessionClient() {
   };
 }
 
-export async function signInWithGithub() {
+export async function signInWithGoogle() {
+  const { account } = await createAdminClient();
+
+  const reqCookies = await headers();
+  const origin = reqCookies.get("origin");
+  const successUrl = `${origin}/oauth`;
+  const failureUrl = `${origin}/signin`;
+
+  const redirectUrl = await account.createOAuth2Token(
+    OAuthProvider.Google,
+    successUrl,
+    failureUrl
+  );
+
+  redirect(redirectUrl);
+}
+
+export async function signInWithApple() {
   const { account } = await createAdminClient();
 
   const reqCookies = await headers();
@@ -40,6 +56,16 @@ export async function signInWithGithub() {
   );
 
   redirect(redirectUrl);
+}
+
+export async function signOut() {
+  const { account } = await createSessionClient();
+  const reqCookies = await cookies();
+
+  reqCookies.delete(SESSION_COOKIE);
+  await account.deleteSession("current");
+
+  redirect("/signin");
 }
 
 export async function createAdminClient() {

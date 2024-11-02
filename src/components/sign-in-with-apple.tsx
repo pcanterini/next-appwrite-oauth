@@ -1,24 +1,14 @@
 "use client";
 import { Button } from "./ui/button";
-import { account } from "@/lib/appwrite-server";
-import { OAuthProvider } from "appwrite";
+import { signInWithApple } from "@/lib/appwrite-server";
 
 export default function SignInWithApple() {
-  const signin = async () => {
-    try {
-      // Create OAuth2 authentication session
-      await account.createOAuth2Session(
-        OAuthProvider.Apple,
-        process.env.NEXT_PUBLIC_OAUTH_REDIRECT_URL, // Success URL
-        process.env.NEXT_PUBLIC_OAUTH_REDIRECT_URL // Failure URL
-      );
-    } catch (error) {
-      console.error("OAuth login error:", error);
-    }
-  };
-
   return (
-    <Button variant="outline" className="min-w-64" onClick={signin}>
+    <Button
+      variant="outline"
+      className="w-full h-14 text-lg text-white bg-zinc-800/20 border-zinc-700 hover:bg-zinc-900 hover:text-white"
+      onClick={signInWithApple}
+    >
       <svg
         className="mr-2 h-5 w-5"
         xmlns="http://www.w3.org/2000/svg"
