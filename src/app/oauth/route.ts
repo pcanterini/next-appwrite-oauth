@@ -27,7 +27,7 @@ export async function GET(request: NextRequest) {
   reqCookies.set(SESSION_COOKIE, session.secret, {
     path: "/",
     httpOnly: true,
-    sameSite: isSecureContext ? "strict" : "lax",
+    sameSite: "lax",
     secure: isSecureContext,
     maxAge: 60 * 60 * 24 * 7, // 1 week
   });
