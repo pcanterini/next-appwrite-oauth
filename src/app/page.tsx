@@ -7,11 +7,13 @@ export default async function Home() {
   console.log("user >>>", user);
 
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+    <div className="min-h-screen flex items-center justify-center bg-black">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         {user ? (
           <>
-            <span>Hello {user.name || user.email}! 👋`</span>
+            <p className="text-2xl text-white">
+              Hello {user.name || user.email}! 👋
+            </p>
             <form className="form common-section" action={signOut}>
               <ul
                 className="form-list"
@@ -29,7 +31,13 @@ export default async function Home() {
             </form>
           </>
         ) : (
-          <Link href="/signin">Sign in</Link>
+          <Button
+            asChild
+            variant="outline"
+            className="w-full text-lg text-white bg-zinc-800/20 border-zinc-700 hover:bg-zinc-900 hover:text-white"
+          >
+            <Link href="/signin">Sign in</Link>
+          </Button>
         )}
       </main>
     </div>
